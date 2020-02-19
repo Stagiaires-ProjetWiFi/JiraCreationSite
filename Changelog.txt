@@ -1,0 +1,25 @@
+v.1.0: 2020-02-12 - Félix Gravel ***Version initiale***
+	Ajouts:
+		-Entrée des informations principales du site à créer(Id, Status, Occupation, Autres infos, Responsable, Rapporteur)
+		-Entrée des étiquettes du site.
+		-Entrée des composantes du site.
+		-Log des opérations pour l'utilisateur.
+		-Dynamisme de plusieurs champs (Status, Composantes, Étiquettes)
+
+------------------------------------------------------------------------------------------------------
+
+v.1.1: 2020-02-17 - Félix Gravel
+	Ajouts:
+		-Lien vers le site crée dans le Log.
+	Modifications:
+		-Refactor de plusieurs variables, constantes et classes pour faire le lien avec les informations entrées sur confluence: https://confluence.montreal.ca/display/DTWC/Jira+Creation+Site
+
+------------------------------------------------------------------------------------------------------
+
+v.1.1: 2020-02-19 - Félix Gravel
+	Ajouts:
+		-Page de connexion avant de pouvoir utiliser le script.
+		-Cette page est quasi identique à la page de connexion sur Jira: https://jira.montreal.ca/login.jsp
+	Modifications:
+		-Code_U est maintenant une Variable au lieu d'une Constante
+		-Password est maintenant une Variable au lieu d'une Constante

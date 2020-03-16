@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using Jira.SDK;
-using Newtonsoft.Json;
 using RestSharp;
 
 namespace JiraCreationSite
@@ -33,6 +32,10 @@ namespace JiraCreationSite
 
         private void BTN_Login_Click(object sender, EventArgs e)
         {
+            //Load...
+            this.Enabled = false;
+            this.Cursor = Cursors.WaitCursor;
+
             //Reset les erreurs
             EP_LoginErrorMessage.Clear();
 
@@ -43,6 +46,12 @@ namespace JiraCreationSite
                 var jiraCreationSite = new JiraCreationSite(TB_Username.Text, TB_Password.Text);
                 jiraCreationSite.ShowDialog();
             }
+            else
+            {
+                this.Enabled = true;
+                this.Cursor = Cursors.Default;
+            }
+            
         }
 
         private bool ValidCredentials(string username, string password)
@@ -72,7 +81,12 @@ namespace JiraCreationSite
             //On fait le check si la réponse n'est pas correcte
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                var error = "Votre nom d'utilisateur et mot de passe sont incorrects.";
+                string error;
+                if (response.Headers.Any(h => (h.Value as string).Contains("CAPTCHA"))) 
+                    error = "Vous avez lancé trops de connections incorrectes."+ Environment.NewLine + "Veuillez vous connecter directement sur https://jira.montreal.ca/login.jsp?nosso pour répondre au CAPTCHA nécessaire et";
+                else
+                    error = "Votre nom d'utilisateur et mot de passe sont incorrects.";
+
                 MessageBox.Show("Désolé, "+ error + Environment.NewLine + "Veuillez recommencer.", "Connexion Jira", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 EP_LoginErrorMessage.SetError(TB_Username, error);
                 EP_LoginErrorMessage.SetError(TB_Password, error);
@@ -81,6 +95,11 @@ namespace JiraCreationSite
 
             //Réussite de toutes les validations
             return true;
+        }
+
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && this.Enabled) BTN_Login_Click(sender, e);
         }
     }
 }

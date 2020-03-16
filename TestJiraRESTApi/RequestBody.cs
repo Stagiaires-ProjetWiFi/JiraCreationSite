@@ -18,6 +18,10 @@ namespace JiraCreationSite
         {
             public string name { get; set; }
         }
+        public class FixVersions
+        {
+            public string name { get; set; }
+        }
         public class Assignee
         {
             public string name { get; set; }
@@ -42,6 +46,7 @@ namespace JiraCreationSite
             public Assignee assignee { get; set; }
             public Parent parent { get; set; }
             public Reporter reporter { get; set; }
+            public List<FixVersions> fixVersions { get; set; }
         }
     }
 }

@@ -42,7 +42,7 @@
             this.DGV_Labels = new System.Windows.Forms.DataGridView();
             this.LabelsCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TLP_Main = new System.Windows.Forms.TableLayoutPanel();
-            this.TLP_Items = new System.Windows.Forms.TableLayoutPanel();
+            this.TLP_Top = new System.Windows.Forms.TableLayoutPanel();
             this.GB_Infos = new System.Windows.Forms.GroupBox();
             this.CB_Reporter = new System.Windows.Forms.ComboBox();
             this.LBL_Reporter = new System.Windows.Forms.Label();
@@ -59,7 +59,12 @@
             this.NUD_ID = new System.Windows.Forms.NumericUpDown();
             this.LBL_Adresse = new System.Windows.Forms.Label();
             this.LBL_ID = new System.Windows.Forms.Label();
-            this.TLP_Top = new System.Windows.Forms.TableLayoutPanel();
+            this.TLP_Middle = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.CB_FixVersions = new System.Windows.Forms.ComboBox();
+            this.DGV_FixVersions = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TLP_Bottom = new System.Windows.Forms.TableLayoutPanel();
             this.BTN_GO = new System.Windows.Forms.Button();
             this.RTB_Log = new System.Windows.Forms.RichTextBox();
@@ -71,10 +76,13 @@
             this.TLP_Labels.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Labels)).BeginInit();
             this.TLP_Main.SuspendLayout();
-            this.TLP_Items.SuspendLayout();
+            this.TLP_Top.SuspendLayout();
             this.GB_Infos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_ID)).BeginInit();
-            this.TLP_Top.SuspendLayout();
+            this.TLP_Middle.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FixVersions)).BeginInit();
             this.TLP_Bottom.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +93,7 @@
             this.GB_Components.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GB_Components.Location = new System.Drawing.Point(3, 3);
             this.GB_Components.Name = "GB_Components";
-            this.GB_Components.Size = new System.Drawing.Size(352, 162);
+            this.GB_Components.Size = new System.Drawing.Size(269, 198);
             this.GB_Components.TabIndex = 0;
             this.GB_Components.TabStop = false;
             this.GB_Components.Text = "Composantes";
@@ -102,7 +110,7 @@
             this.TLP_Components.RowCount = 2;
             this.TLP_Components.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.TLP_Components.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TLP_Components.Size = new System.Drawing.Size(346, 138);
+            this.TLP_Components.Size = new System.Drawing.Size(263, 174);
             this.TLP_Components.TabIndex = 0;
             // 
             // DGV_Components
@@ -131,7 +139,7 @@
             this.DGV_Components.Location = new System.Drawing.Point(3, 33);
             this.DGV_Components.Name = "DGV_Components";
             this.DGV_Components.RowHeadersVisible = false;
-            this.DGV_Components.Size = new System.Drawing.Size(340, 104);
+            this.DGV_Components.Size = new System.Drawing.Size(257, 168);
             this.DGV_Components.TabIndex = 1;
             this.DGV_Components.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_KeyDown);
             // 
@@ -149,7 +157,7 @@
             this.CB_Components.FormattingEnabled = true;
             this.CB_Components.Location = new System.Drawing.Point(3, 3);
             this.CB_Components.Name = "CB_Components";
-            this.CB_Components.Size = new System.Drawing.Size(340, 25);
+            this.CB_Components.Size = new System.Drawing.Size(257, 25);
             this.CB_Components.TabIndex = 0;
             this.ToolTips.SetToolTip(this.CB_Components, "Selection d\'une composante à être ajoutée à la liste. (Aucun ajout possible ici)");
             this.CB_Components.SelectedIndexChanged += new System.EventHandler(this.CB_Components_SelectedIndexChanged);
@@ -161,9 +169,9 @@
             this.GB_Labels.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GB_Labels.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GB_Labels.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.GB_Labels.Location = new System.Drawing.Point(3, 171);
+            this.GB_Labels.Location = new System.Drawing.Point(278, 3);
             this.GB_Labels.Name = "GB_Labels";
-            this.GB_Labels.Size = new System.Drawing.Size(352, 163);
+            this.GB_Labels.Size = new System.Drawing.Size(269, 198);
             this.GB_Labels.TabIndex = 1;
             this.GB_Labels.TabStop = false;
             this.GB_Labels.Text = "Étiquettes";
@@ -180,7 +188,7 @@
             this.TLP_Labels.RowCount = 2;
             this.TLP_Labels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.TLP_Labels.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TLP_Labels.Size = new System.Drawing.Size(346, 139);
+            this.TLP_Labels.Size = new System.Drawing.Size(263, 174);
             this.TLP_Labels.TabIndex = 1;
             // 
             // CB_Labels
@@ -193,7 +201,7 @@
             this.CB_Labels.FormattingEnabled = true;
             this.CB_Labels.Location = new System.Drawing.Point(3, 3);
             this.CB_Labels.Name = "CB_Labels";
-            this.CB_Labels.Size = new System.Drawing.Size(340, 25);
+            this.CB_Labels.Size = new System.Drawing.Size(257, 25);
             this.CB_Labels.TabIndex = 0;
             this.ToolTips.SetToolTip(this.CB_Labels, "Selection d\'une étiquette à être ajoutée à la liste. (Ajout de nouvelle étiquette" +
         " possible)");
@@ -218,7 +226,7 @@
             this.DGV_Labels.Location = new System.Drawing.Point(3, 33);
             this.DGV_Labels.Name = "DGV_Labels";
             this.DGV_Labels.RowHeadersVisible = false;
-            this.DGV_Labels.Size = new System.Drawing.Size(340, 104);
+            this.DGV_Labels.Size = new System.Drawing.Size(257, 168);
             this.DGV_Labels.TabIndex = 1;
             this.DGV_Labels.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_KeyDown);
             // 
@@ -231,32 +239,31 @@
             // 
             this.TLP_Main.ColumnCount = 1;
             this.TLP_Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLP_Main.Controls.Add(this.TLP_Items, 0, 0);
-            this.TLP_Main.Controls.Add(this.TLP_Bottom, 0, 1);
+            this.TLP_Main.Controls.Add(this.TLP_Top, 0, 0);
+            this.TLP_Main.Controls.Add(this.TLP_Middle, 0, 1);
+            this.TLP_Main.Controls.Add(this.TLP_Bottom, 0, 2);
             this.TLP_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TLP_Main.Location = new System.Drawing.Point(0, 0);
             this.TLP_Main.Name = "TLP_Main";
-            this.TLP_Main.RowCount = 2;
-            this.TLP_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.TLP_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.TLP_Main.Size = new System.Drawing.Size(734, 437);
+            this.TLP_Main.RowCount = 3;
+            this.TLP_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.TLP_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.TLP_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.TLP_Main.Size = new System.Drawing.Size(832, 501);
             this.TLP_Main.TabIndex = 0;
             // 
-            // TLP_Items
+            // TLP_Top
             // 
-            this.TLP_Items.ColumnCount = 2;
-            this.TLP_Items.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TLP_Items.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TLP_Items.Controls.Add(this.GB_Infos, 0, 0);
-            this.TLP_Items.Controls.Add(this.TLP_Top, 1, 0);
-            this.TLP_Items.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TLP_Items.Location = new System.Drawing.Point(3, 3);
-            this.TLP_Items.Name = "TLP_Items";
-            this.TLP_Items.RowCount = 1;
-            this.TLP_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLP_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 343F));
-            this.TLP_Items.Size = new System.Drawing.Size(728, 343);
-            this.TLP_Items.TabIndex = 0;
+            this.TLP_Top.ColumnCount = 1;
+            this.TLP_Top.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TLP_Top.Controls.Add(this.GB_Infos, 0, 0);
+            this.TLP_Top.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TLP_Top.Location = new System.Drawing.Point(3, 3);
+            this.TLP_Top.Name = "TLP_Top";
+            this.TLP_Top.RowCount = 1;
+            this.TLP_Top.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TLP_Top.Size = new System.Drawing.Size(826, 194);
+            this.TLP_Top.TabIndex = 0;
             // 
             // GB_Infos
             // 
@@ -280,22 +287,20 @@
             this.GB_Infos.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GB_Infos.Location = new System.Drawing.Point(3, 3);
             this.GB_Infos.Name = "GB_Infos";
-            this.GB_Infos.Size = new System.Drawing.Size(358, 337);
+            this.GB_Infos.Size = new System.Drawing.Size(820, 188);
             this.GB_Infos.TabIndex = 0;
             this.GB_Infos.TabStop = false;
             this.GB_Infos.Text = "Informations principales";
             // 
             // CB_Reporter
             // 
-            this.CB_Reporter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_Reporter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_Reporter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CB_Reporter.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.CB_Reporter.FormattingEnabled = true;
-            this.CB_Reporter.Location = new System.Drawing.Point(9, 281);
+            this.CB_Reporter.Location = new System.Drawing.Point(614, 41);
             this.CB_Reporter.Name = "CB_Reporter";
-            this.CB_Reporter.Size = new System.Drawing.Size(342, 25);
+            this.CB_Reporter.Size = new System.Drawing.Size(200, 25);
             this.CB_Reporter.TabIndex = 13;
             this.ToolTips.SetToolTip(this.CB_Reporter, "Indiquation de qui sera le rapporteur de la Tâche et les Sous-Tâches");
             // 
@@ -303,7 +308,7 @@
             // 
             this.LBL_Reporter.AutoSize = true;
             this.LBL_Reporter.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.LBL_Reporter.Location = new System.Drawing.Point(6, 261);
+            this.LBL_Reporter.Location = new System.Drawing.Point(611, 21);
             this.LBL_Reporter.Name = "LBL_Reporter";
             this.LBL_Reporter.Size = new System.Drawing.Size(144, 17);
             this.LBL_Reporter.TabIndex = 12;
@@ -311,12 +316,10 @@
             // 
             // TB_MoreInfos
             // 
-            this.TB_MoreInfos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_MoreInfos.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.TB_MoreInfos.Location = new System.Drawing.Point(9, 185);
+            this.TB_MoreInfos.Location = new System.Drawing.Point(414, 137);
             this.TB_MoreInfos.Name = "TB_MoreInfos";
-            this.TB_MoreInfos.Size = new System.Drawing.Size(342, 25);
+            this.TB_MoreInfos.Size = new System.Drawing.Size(400, 25);
             this.TB_MoreInfos.TabIndex = 9;
             this.ToolTips.SetToolTip(this.TB_MoreInfos, "Ce champs s\'ajoute après l\'occupation dans les Tâches et Sous-Tâches.");
             // 
@@ -324,7 +327,7 @@
             // 
             this.LBL_MoreInfos.AutoSize = true;
             this.LBL_MoreInfos.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.LBL_MoreInfos.Location = new System.Drawing.Point(6, 165);
+            this.LBL_MoreInfos.Location = new System.Drawing.Point(411, 117);
             this.LBL_MoreInfos.Name = "LBL_MoreInfos";
             this.LBL_MoreInfos.Size = new System.Drawing.Size(293, 17);
             this.LBL_MoreInfos.TabIndex = 8;
@@ -332,10 +335,9 @@
             // 
             // LBL_Infos
             // 
-            this.LBL_Infos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LBL_Infos.AutoSize = true;
             this.LBL_Infos.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LBL_Infos.Location = new System.Drawing.Point(6, 320);
+            this.LBL_Infos.Location = new System.Drawing.Point(6, 171);
             this.LBL_Infos.Name = "LBL_Infos";
             this.LBL_Infos.Size = new System.Drawing.Size(225, 13);
             this.LBL_Infos.TabIndex = 14;
@@ -343,15 +345,13 @@
             // 
             // CB_Asignee
             // 
-            this.CB_Asignee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_Asignee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_Asignee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CB_Asignee.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.CB_Asignee.FormattingEnabled = true;
-            this.CB_Asignee.Location = new System.Drawing.Point(9, 233);
+            this.CB_Asignee.Location = new System.Drawing.Point(408, 41);
             this.CB_Asignee.Name = "CB_Asignee";
-            this.CB_Asignee.Size = new System.Drawing.Size(342, 25);
+            this.CB_Asignee.Size = new System.Drawing.Size(200, 25);
             this.CB_Asignee.TabIndex = 11;
             this.ToolTips.SetToolTip(this.CB_Asignee, "Indication de qui sera assigné a la Tâche principale.");
             // 
@@ -359,7 +359,7 @@
             // 
             this.LBL_Assignee.AutoSize = true;
             this.LBL_Assignee.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.LBL_Assignee.Location = new System.Drawing.Point(6, 213);
+            this.LBL_Assignee.Location = new System.Drawing.Point(405, 21);
             this.LBL_Assignee.Name = "LBL_Assignee";
             this.LBL_Assignee.Size = new System.Drawing.Size(147, 17);
             this.LBL_Assignee.TabIndex = 10;
@@ -369,7 +369,7 @@
             // 
             this.LBL_Status.AutoSize = true;
             this.LBL_Status.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.LBL_Status.Location = new System.Drawing.Point(114, 20);
+            this.LBL_Status.Location = new System.Drawing.Point(100, 20);
             this.LBL_Status.Name = "LBL_Status";
             this.LBL_Status.Size = new System.Drawing.Size(48, 17);
             this.LBL_Status.TabIndex = 2;
@@ -381,20 +381,18 @@
             this.CB_Status.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CB_Status.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.CB_Status.FormattingEnabled = true;
-            this.CB_Status.Location = new System.Drawing.Point(117, 40);
+            this.CB_Status.Location = new System.Drawing.Point(103, 40);
             this.CB_Status.Name = "CB_Status";
-            this.CB_Status.Size = new System.Drawing.Size(163, 25);
+            this.CB_Status.Size = new System.Drawing.Size(199, 25);
             this.CB_Status.TabIndex = 3;
             this.ToolTips.SetToolTip(this.CB_Status, "Status du nouveau site.");
             // 
             // TB_Occupation
             // 
-            this.TB_Occupation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_Occupation.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.TB_Occupation.Location = new System.Drawing.Point(8, 137);
             this.TB_Occupation.Name = "TB_Occupation";
-            this.TB_Occupation.Size = new System.Drawing.Size(342, 25);
+            this.TB_Occupation.Size = new System.Drawing.Size(400, 25);
             this.TB_Occupation.TabIndex = 7;
             this.ToolTips.SetToolTip(this.TB_Occupation, "Ce champs s\'ajoute après l\'adresse dans les Tâches et Sous-Tâches. (Entre parenth" +
         "èses)");
@@ -411,12 +409,10 @@
             // 
             // TB_Adress
             // 
-            this.TB_Adress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TB_Adress.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.TB_Adress.Location = new System.Drawing.Point(8, 89);
             this.TB_Adress.Name = "TB_Adress";
-            this.TB_Adress.Size = new System.Drawing.Size(342, 25);
+            this.TB_Adress.Size = new System.Drawing.Size(806, 25);
             this.TB_Adress.TabIndex = 5;
             this.ToolTips.SetToolTip(this.TB_Adress, "Ce champs s\'ajoute au titre et à la description des Tâches et Sous-Tâches.");
             // 
@@ -454,20 +450,95 @@
             this.LBL_ID.TabIndex = 0;
             this.LBL_ID.Text = "ID du site*";
             // 
-            // TLP_Top
+            // TLP_Middle
             // 
-            this.TLP_Top.ColumnCount = 1;
-            this.TLP_Top.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLP_Top.Controls.Add(this.GB_Components, 0, 0);
-            this.TLP_Top.Controls.Add(this.GB_Labels, 0, 1);
-            this.TLP_Top.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TLP_Top.Location = new System.Drawing.Point(367, 3);
-            this.TLP_Top.Name = "TLP_Top";
-            this.TLP_Top.RowCount = 2;
-            this.TLP_Top.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TLP_Top.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TLP_Top.Size = new System.Drawing.Size(358, 337);
-            this.TLP_Top.TabIndex = 1;
+            this.TLP_Middle.ColumnCount = 3;
+            this.TLP_Middle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.TLP_Middle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.TLP_Middle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.TLP_Middle.Controls.Add(this.groupBox1, 2, 0);
+            this.TLP_Middle.Controls.Add(this.GB_Components, 0, 0);
+            this.TLP_Middle.Controls.Add(this.GB_Labels, 1, 0);
+            this.TLP_Middle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TLP_Middle.Location = new System.Drawing.Point(3, 203);
+            this.TLP_Middle.Name = "TLP_Middle";
+            this.TLP_Middle.RowCount = 1;
+            this.TLP_Middle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TLP_Middle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 204F));
+            this.TLP_Middle.Size = new System.Drawing.Size(826, 204);
+            this.TLP_Middle.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.groupBox1.Location = new System.Drawing.Point(553, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(270, 198);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Versions corrigées";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.CB_FixVersions, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.DGV_FixVersions, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 21);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(264, 174);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // CB_FixVersions
+            // 
+            this.CB_FixVersions.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CB_FixVersions.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CB_FixVersions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CB_FixVersions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CB_FixVersions.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_FixVersions.FormattingEnabled = true;
+            this.CB_FixVersions.Location = new System.Drawing.Point(3, 3);
+            this.CB_FixVersions.Name = "CB_FixVersions";
+            this.CB_FixVersions.Size = new System.Drawing.Size(258, 25);
+            this.CB_FixVersions.TabIndex = 0;
+            this.ToolTips.SetToolTip(this.CB_FixVersions, "Selection d\'une version corrigée à être ajoutée à la liste. (Aucun ajout possible" +
+        " ici)");
+            this.CB_FixVersions.SelectedIndexChanged += new System.EventHandler(this.CB_FixVersions_SelectedIndexChanged);
+            this.CB_FixVersions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CB_FixVersions_KeyDown);
+            // 
+            // DGV_FixVersions
+            // 
+            this.DGV_FixVersions.AllowDrop = true;
+            this.DGV_FixVersions.AllowUserToAddRows = false;
+            this.DGV_FixVersions.AllowUserToResizeColumns = false;
+            this.DGV_FixVersions.AllowUserToResizeRows = false;
+            this.DGV_FixVersions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGV_FixVersions.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DGV_FixVersions.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.DGV_FixVersions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_FixVersions.ColumnHeadersVisible = false;
+            this.DGV_FixVersions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.DGV_FixVersions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGV_FixVersions.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.DGV_FixVersions.Location = new System.Drawing.Point(3, 33);
+            this.DGV_FixVersions.Name = "DGV_FixVersions";
+            this.DGV_FixVersions.RowHeadersVisible = false;
+            this.DGV_FixVersions.Size = new System.Drawing.Size(258, 168);
+            this.DGV_FixVersions.TabIndex = 1;
+            this.DGV_FixVersions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_KeyDown);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Labels";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // TLP_Bottom
             // 
@@ -478,11 +549,11 @@
             this.TLP_Bottom.Controls.Add(this.BTN_GO, 0, 0);
             this.TLP_Bottom.Controls.Add(this.RTB_Log, 1, 0);
             this.TLP_Bottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TLP_Bottom.Location = new System.Drawing.Point(3, 352);
+            this.TLP_Bottom.Location = new System.Drawing.Point(3, 413);
             this.TLP_Bottom.Name = "TLP_Bottom";
             this.TLP_Bottom.RowCount = 1;
             this.TLP_Bottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLP_Bottom.Size = new System.Drawing.Size(728, 82);
+            this.TLP_Bottom.Size = new System.Drawing.Size(826, 85);
             this.TLP_Bottom.TabIndex = 1;
             // 
             // BTN_GO
@@ -495,7 +566,7 @@
             this.BTN_GO.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_GO.Location = new System.Drawing.Point(3, 3);
             this.BTN_GO.Name = "BTN_GO";
-            this.BTN_GO.Size = new System.Drawing.Size(102, 76);
+            this.BTN_GO.Size = new System.Drawing.Size(102, 79);
             this.BTN_GO.TabIndex = 0;
             this.BTN_GO.Text = "Créer le site";
             this.ToolTips.SetToolTip(this.BTN_GO, "Bouton pour lancer la requête de création de site à Jira.");
@@ -512,7 +583,7 @@
             this.RTB_Log.Name = "RTB_Log";
             this.RTB_Log.ReadOnly = true;
             this.RTB_Log.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.RTB_Log.Size = new System.Drawing.Size(614, 76);
+            this.RTB_Log.Size = new System.Drawing.Size(797, 79);
             this.RTB_Log.TabIndex = 1;
             this.RTB_Log.Text = "Bienvenue sur le script de céation de sites Jira!\nVeuillez entrer toutes les info" +
     "rmations nécessaires et appuyez sur \"Créer le site\".";
@@ -528,13 +599,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(734, 437);
+            this.ClientSize = new System.Drawing.Size(832, 501);
             this.Controls.Add(this.TLP_Main);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(750, 475);
+            this.MinimumSize = new System.Drawing.Size(848, 539);
             this.Name = "JiraCreationSite";
             this.Text = "Création de sites Jira";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.JiraCreationSite_FormClosing);
             this.GB_Components.ResumeLayout(false);
             this.TLP_Components.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Components)).EndInit();
@@ -542,11 +614,14 @@
             this.TLP_Labels.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Labels)).EndInit();
             this.TLP_Main.ResumeLayout(false);
-            this.TLP_Items.ResumeLayout(false);
+            this.TLP_Top.ResumeLayout(false);
             this.GB_Infos.ResumeLayout(false);
             this.GB_Infos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_ID)).EndInit();
-            this.TLP_Top.ResumeLayout(false);
+            this.TLP_Middle.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FixVersions)).EndInit();
             this.TLP_Bottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -556,7 +631,7 @@
         private System.Windows.Forms.GroupBox GB_Components;
         private System.Windows.Forms.GroupBox GB_Labels;
         private System.Windows.Forms.TableLayoutPanel TLP_Main;
-        private System.Windows.Forms.TableLayoutPanel TLP_Items;
+        private System.Windows.Forms.TableLayoutPanel TLP_Top;
         private System.Windows.Forms.GroupBox GB_Infos;
         private System.Windows.Forms.ComboBox CB_Asignee;
         private System.Windows.Forms.Label LBL_Assignee;
@@ -568,7 +643,7 @@
         private System.Windows.Forms.NumericUpDown NUD_ID;
         private System.Windows.Forms.Label LBL_Adresse;
         private System.Windows.Forms.Label LBL_ID;
-        private System.Windows.Forms.TableLayoutPanel TLP_Top;
+        private System.Windows.Forms.TableLayoutPanel TLP_Middle;
         private System.Windows.Forms.DataGridView DGV_Components;
         private System.Windows.Forms.TableLayoutPanel TLP_Components;
         private System.Windows.Forms.TableLayoutPanel TLP_Labels;
@@ -586,6 +661,11 @@
         private System.Windows.Forms.Button BTN_GO;
         private System.Windows.Forms.RichTextBox RTB_Log;
         private System.Windows.Forms.ToolTip ToolTips;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ComboBox CB_FixVersions;
+        private System.Windows.Forms.DataGridView DGV_FixVersions;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }
 

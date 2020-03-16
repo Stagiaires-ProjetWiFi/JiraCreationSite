@@ -96,9 +96,13 @@ namespace JiraCreationSite
         /// </summary>
         public List<string> Labels { get; set; }
         /// <summary>
-        /// Tous les labels déja existants sur Jira.
+        /// Tous les composantes déja existants sur Jira.
         /// </summary>
         public List<string> Components { get; set; }
+        /// <summary>
+        /// Tous les fix versions déja existants sur Jira.
+        /// </summary>
+        public List<string> FixVersions { get; set; }
         /// <summary>
         /// Instance du projet WiFiMTL
         /// </summary>
@@ -161,11 +165,14 @@ namespace JiraCreationSite
         private void LoadJiraValues(Project project)
         {
             //Components
-            Components = project.Components.Select(c => c.Name).ToList();
+            Components = project.Components.OrderBy(c => c.Name).Select(c => c.Name).ToList();
             CB_Components.Items.AddRange(Components.ToArray());
+            //Fix Versions
+            FixVersions = project.ProjectVersions.OrderBy(c => c.Name).Select(v => v.Name).ToList();
+            CB_FixVersions.Items.AddRange(FixVersions.ToArray());
 
             //Labels
-            Labels = LoadLabelsJSON().Suggestions.Select(s => s.Label).ToList();
+            Labels = LoadLabelsJSON().Suggestions.OrderBy(c => c.Label).Select(s => s.Label).ToList();
             CB_Labels.Items.AddRange(Labels.ToArray());
 
             //Status
@@ -189,8 +196,10 @@ namespace JiraCreationSite
             try
             {
                 //Obtiens toutes les informations pour la requêtte HTTP (où envoyer le data)
-                var request = new RestSharp.RestRequest(String.Format("{0}/issue/{1}", "/rest/api/latest", issue.Key), RestSharp.Method.PUT);
-                request.RequestFormat = RestSharp.DataFormat.Json;
+                var request = new RestRequest(String.Format("{0}/issue/{1}", "/rest/api/latest", issue.Key), Method.PUT)
+                {
+                    RequestFormat = DataFormat.Json
+                };
                 request.AddHeader("ContentType", "application/json");
 
                 //Vérifie les champs vides et les insère dans updateData.
@@ -271,7 +280,7 @@ namespace JiraCreationSite
                     description = nomSite,
                     reporter = new RequestBody.Reporter() { name = REPORTERS.Single(r => r.Name == CB_Reporter.Text).CodeU },
                     assignee = new RequestBody.Assignee() { name = ASSIGNEES.Single(a => a.Name == CB_Asignee.Text).CodeU },
-                    issuetype = new RequestBody.Issuetype() { id = ((int)IssueTypes.Task).ToString() }
+                    issuetype = new RequestBody.Issuetype() { id = ((int)IssueTypes.Task).ToString() },
                 }
             };
             if (DGV_Components.Rows.Count > 0)
@@ -294,6 +303,16 @@ namespace JiraCreationSite
                         requestBody.fields.labels.Add(cell.Value.ToString());
                 }
             }
+            if (DGV_FixVersions.Rows.Count > 0)
+            {
+                requestBody.fields.fixVersions = new List<RequestBody.FixVersions>();
+                foreach(DataGridViewRow row in DGV_FixVersions.Rows)
+                {
+                    var cell = row.Cells[0];
+                    if (!string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                        requestBody.fields.fixVersions.Add(new RequestBody.FixVersions() { name = cell.Value.ToString() });
+                }
+            }
             return requestBody;
         }
         #endregion
@@ -311,8 +330,7 @@ namespace JiraCreationSite
             if (validationErrors.Count == 0)
             {
                 //Bloque les intéractions
-                RTB_Log.AppendText("\r\nExécution du script en cours, veuillez patienter!");
-                RTB_Log.ScrollToCaret();
+                RTB_Log.AppendText("\r\nExécution du script en cours, veuillez patienter!"); RTB_Log.ScrollToCaret();
                 Cursor = Cursors.WaitCursor;
                 TLP_Main.Enabled = false;
 
@@ -320,16 +338,15 @@ namespace JiraCreationSite
                 var key = CreateSite();
 
                 //Réactive les intéractions
-                RTB_Log.AppendText("\r\nLe site à été crée! https://jira.montreal.ca/browse/" + key);
-                RTB_Log.ScrollToCaret();
+                RTB_Log.AppendText("\r\nExécution Complête: Le site à été correctement crée! https://jira.montreal.ca/browse/" + key); RTB_Log.ScrollToCaret();
                 TLP_Main.Enabled = true;
                 Cursor = Cursors.Default;
             }
             else
             {
-                foreach(var error in validationErrors)
-                RTB_Log.AppendText("\r\n" + error);
-                RTB_Log.ScrollToCaret();
+                MessageBox.Show("Erreur de validation, Veuillez réessayer!\n\n Les champs incorrects sont visibles dans la boite de messages au bas de la fenêtre.", "Erreur de validation!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                foreach (var error in validationErrors)
+                RTB_Log.AppendText("\r\n" + error); RTB_Log.ScrollToCaret();
             }
         }
         private void DGV_KeyDown(object sender, KeyEventArgs e)
@@ -353,7 +370,21 @@ namespace JiraCreationSite
             if (string.IsNullOrWhiteSpace(CB_Components.Text)) return;
             if (e.KeyCode == Keys.Enter && !Components.Contains(CB_Components.Text))
             {
-                MessageBox.Show("\a Composante inexistante!\n  Veuillez réessayer.\n  Pour ajouter des nouvelles composantes communiquez avec un administrateur du projet Jira.", "Composante inexistante!");
+                MessageBox.Show("Composante inexistante, Veuillez réessayer!\n\n  Pour ajouter des nouvelles composantes communiquez avec un administrateur du projet Jira.", "Composante inexistante!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CB_Components.ResetText();
+            }
+        }
+        private void CB_FixVersions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CB_FixVersions.Text)) return;
+            DGV_FixVersions.Rows.Add(CB_FixVersions.SelectedItem.ToString());
+        }
+        private void CB_FixVersions_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CB_FixVersions.Text)) return;
+            if (e.KeyCode == Keys.Enter && !FixVersions.Contains(CB_FixVersions.Text))
+            {
+                MessageBox.Show("Version corrigée inexistante, Veuillez réessayer!\n\n  Pour ajouter des nouvelles versions corrigées communiquez avec un administrateur du projet Jira.", "Version corrigée inexistante!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CB_Components.ResetText();
             }
         }
@@ -375,6 +406,10 @@ namespace JiraCreationSite
         {
             System.Diagnostics.Process.Start(e.LinkText);
         }
+        private void JiraCreationSite_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
         #endregion
 
         #region Requete vers Jira
@@ -388,6 +423,7 @@ namespace JiraCreationSite
 
             //Tâche principale
             var newSiteKey = CreateIssue(requestBody).Key;
+            RTB_Log.AppendText("\r\nEXÉCUTION: Tâche Principale crée."); RTB_Log.ScrollToCaret();
 
             //Sous-Tâches
             requestBody.fields.issuetype = new RequestBody.Issuetype() { id = ((int)IssueTypes.Subtask).ToString() };
@@ -397,6 +433,7 @@ namespace JiraCreationSite
             {
                 requestBody.fields.summary = procedure;
                 CreateIssue(requestBody);
+                RTB_Log.AppendText($"\r\nEXÉCUTION: Sous-tâche: \"{procedure}\" crée."); RTB_Log.ScrollToCaret();
             }
             return newSiteKey;
         }
@@ -445,5 +482,7 @@ namespace JiraCreationSite
             return null;
         }
         #endregion
+
+        
     }
 }
